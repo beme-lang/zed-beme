@@ -8,4 +8,4 @@ repository = "https://github.com/beme-lang/zed-beme"
 
 [grammars.beme]
 repository = "https://github.com/beme-lang/tree-sitter-beme"
-commit = "0fdb2a69e969ad61c02f5e5207f5f0bfe77b3d59"
+commit = "0fdb2a62a16f948b550f612518a4120892e3d3ca"
