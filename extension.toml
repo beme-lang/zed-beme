@@ -1,0 +1,11 @@
+id = "beme"
+name = "Beme"
+description = "Beme language support for Zed — M-expression syntax over Clojure."
+version = "0.0.1"
+schema_version = 1
+authors = ["beme-lang"]
+repository = "https://github.com/beme-lang/zed-beme"
+
+[grammars.beme]
+repository = "https://github.com/beme-lang/tree-sitter-beme"
+commit = "3f3998688a0167857d9fcb7e97d0cea3e520f2c2"
