@@ -27,23 +27,26 @@
 "#{" @punctuation.bracket
 "#(" @punctuation.bracket
 
-; === Reader macro sigils ===
+; === Reader macro sigils — dark red, distinct from everything ===
 
-(deref "@" @operator)
-(metadata "^" @operator)
-(quote "'" @operator)
-(var_quote "#'" @operator)
-(discard "#_" @operator)
-(unquote "~" @operator)
-(unquote_splicing "~@" @operator)
-(syntax_quote "`" @operator)
-(tagged_literal "#" @operator)
-(tagged_literal tag: (tag) @type)
+(deref "@" @punctuation.special)
+(metadata "^" @punctuation.special)
+(quote "'" @punctuation.special)
+(var_quote "#'" @punctuation.special)
+(discard "#_" @punctuation.special)
+(unquote "~" @punctuation.special)
+(unquote_splicing "~@" @punctuation.special)
+(syntax_quote "`" @punctuation.special)
 
-; === begin/end — structural delimiters, visually distinct from both brackets and keywords ===
+; === Tagged literals — #inst, #uuid — red tag name ===
 
-"begin" @type
-"end" @type
+(tagged_literal "#" @punctuation.special)
+(tagged_literal tag: (tag) @property)
+
+; === begin/end — structural delimiters ===
+
+"begin" @operator
+"end" @operator
 
 ; === Call heads — functions ===
 
@@ -56,7 +59,7 @@
 (call
   head: (symbol) @keyword
   .
-  (symbol) @variable.special
+  (symbol) @type
   (#any-of? @keyword "def" "defn" "defn-" "defmacro" "defonce"
     "defprotocol" "defrecord" "deftype" "defmulti" "defmethod"
     "definterface" "declare" "intern"))
@@ -64,7 +67,7 @@
 (begin_end_call
   head: (symbol) @keyword
   .
-  (symbol) @variable.special
+  (symbol) @type
   (#any-of? @keyword "def" "defn" "defn-" "defmacro" "defonce"
     "defprotocol" "defrecord" "deftype" "defmulti" "defmethod"
     "definterface" "declare" "intern"))
