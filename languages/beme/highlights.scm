@@ -26,8 +26,8 @@
 "}" @punctuation.bracket
 "#{" @punctuation.bracket
 "#(" @punctuation.bracket
-"begin" @punctuation.delimiter
-"end" @punctuation.delimiter
+"begin" @keyword
+"end" @keyword
 
 ; === Reader macro sigils ===
 
