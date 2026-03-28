@@ -41,9 +41,9 @@
 (tagged_literal "#" @punctuation.special)
 (tagged_literal tag: (tag) @type)
 
-; begin/end delimiters — distinct from brackets
-"begin" @keyword
-"end" @keyword
+; begin/end are delimiters, not keywords
+"begin" @punctuation.bracket
+"end" @punctuation.bracket
 
 ; Call heads — functions (less specific, comes before special forms)
 (call head: (symbol) @function)
