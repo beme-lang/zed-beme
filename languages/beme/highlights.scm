@@ -1,4 +1,4 @@
-; === Fallbacks (least specific — at top, overridden by everything below) ===
+; === Fallbacks ===
 
 (symbol) @variable
 
@@ -16,7 +16,7 @@
 
 (keyword) @constant
 
-; === Data structure delimiters ===
+; === Delimiters ===
 
 "(" @punctuation.bracket
 ")" @punctuation.bracket
@@ -26,8 +26,10 @@
 "}" @punctuation.bracket
 "#{" @punctuation.bracket
 "#(" @punctuation.bracket
+"begin" @punctuation.delimiter
+"end" @punctuation.delimiter
 
-; === Reader macro sigils — dark red, distinct from everything ===
+; === Reader macro sigils ===
 
 (deref "@" @punctuation.special)
 (metadata "^" @punctuation.special)
@@ -37,73 +39,29 @@
 (unquote "~" @punctuation.special)
 (unquote_splicing "~@" @punctuation.special)
 (syntax_quote "`" @punctuation.special)
-
-; === Tagged literals — #inst, #uuid — red tag name ===
-
 (tagged_literal "#" @punctuation.special)
 (tagged_literal tag: (tag) @property)
 
-; === begin/end — structural delimiters ===
-
-"begin" @operator
-"end" @operator
-
-; === Call heads — functions ===
+; === Call heads ===
 
 (call head: (symbol) @function)
 (begin_end_call head: (symbol) @function)
 (call head: (keyword) @function)
 
-; === Definition names — the thing being defined ===
+; === Definition names ===
 
 (call
-  head: (symbol) @keyword
+  head: (symbol) @function
   .
   (symbol) @type
-  (#any-of? @keyword "def" "defn" "defn-" "defmacro" "defonce"
+  (#any-of? @function "def" "defn" "defn-" "defmacro" "defonce"
     "defprotocol" "defrecord" "deftype" "defmulti" "defmethod"
     "definterface" "declare" "intern"))
 
 (begin_end_call
-  head: (symbol) @keyword
+  head: (symbol) @function
   .
   (symbol) @type
-  (#any-of? @keyword "def" "defn" "defn-" "defmacro" "defonce"
+  (#any-of? @function "def" "defn" "defn-" "defmacro" "defonce"
     "defprotocol" "defrecord" "deftype" "defmulti" "defmethod"
     "definterface" "declare" "intern"))
-
-; === Special forms — must be last to override @function on call heads ===
-
-(call head: (symbol) @keyword
-  (#any-of? @keyword
-    "def" "defn" "defn-" "defmacro" "defonce" "defprotocol" "defrecord"
-    "deftype" "defmulti" "defmethod" "definterface"
-    "fn" "fn*" "let" "loop" "recur" "do"
-    "if" "if-let" "if-some" "if-not"
-    "when" "when-let" "when-some" "when-not" "when-first"
-    "cond" "condp" "cond->" "cond->>"
-    "case" "try" "catch" "finally" "throw"
-    "for" "doseq" "dotimes" "while"
-    "ns" "require" "import" "use" "refer"
-    "quote" "var" "set!" "new"
-    "reify" "proxy" "extend-type" "extend-protocol"
-    "->" "->>" "as->" "some->" "some->>"
-    "binding" "with-open" "with-local-vars"
-    "declare" "intern"))
-
-(begin_end_call head: (symbol) @keyword
-  (#any-of? @keyword
-    "def" "defn" "defn-" "defmacro" "defonce" "defprotocol" "defrecord"
-    "deftype" "defmulti" "defmethod" "definterface"
-    "fn" "fn*" "let" "loop" "recur" "do"
-    "if" "if-let" "if-some" "if-not"
-    "when" "when-let" "when-some" "when-not" "when-first"
-    "cond" "condp" "cond->" "cond->>"
-    "case" "try" "catch" "finally" "throw"
-    "for" "doseq" "dotimes" "while"
-    "ns" "require" "import" "use" "refer"
-    "quote" "var" "set!" "new"
-    "reify" "proxy" "extend-type" "extend-protocol"
-    "->" "->>" "as->" "some->" "some->>"
-    "binding" "with-open" "with-local-vars"
-    "declare" "intern"))
