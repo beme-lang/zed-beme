@@ -1,7 +1,7 @@
 id = "beme"
 name = "Beme"
 description = "Beme language support for Zed — M-expression syntax over Clojure."
-version = "0.0.1"
+version = "0.4.0"
 schema_version = 1
 authors = ["beme-lang"]
 repository = "https://github.com/beme-lang/zed-beme"
